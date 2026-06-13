@@ -1,0 +1,12 @@
+[Unit]
+Description=Update screen orientation based on monitor-sensor value
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/home/mars/dotfiles/scripts/auto-rotate-screen.sh
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=graphical-session.target
