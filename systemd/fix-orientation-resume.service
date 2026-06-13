@@ -1,0 +1,13 @@
+[Unit]
+Description=Fix screen orientation after resume
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+Type=oneshot
+User=mars
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+ExecStartPre=/bin/sleep 1
+ExecStart=/usr/bin/gnome-monitor-config set -L -M eDP-1 -m 1600x2560@143.999 -s 2 -t right -x 0 -y 0 -p
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
