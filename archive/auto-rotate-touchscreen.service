@@ -4,7 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/home/mars/dotfiles/scripts/auto-rotate-touchscreen.sh
+ExecStart=%h/.local/bin/auto-rotate-touchscreen.sh
 Restart=on-failure
 RestartSec=2
 
