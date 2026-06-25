@@ -17,12 +17,12 @@ check_dependencies() {
     local missing=0
 
     if ! command -v monitor-sensor &> /dev/null; then
-        echo "  MISSING: monitor-sensor (install iio-sensor-proxy via dnf)"
+        echo "  MISSING: monitor-sensor (sudo dnf install iio-sensor-proxy)"
         missing=1
     fi
 
     if ! command -v gnome-monitor-config &> /dev/null; then
-        echo "  MISSING: gnome-monitor-config (install gnome-monitor-config via dnf)"
+        echo "  MISSING: gnome-monitor-config (sudo dnf install gnome-monitor-config)"
         missing=1
     fi
 
