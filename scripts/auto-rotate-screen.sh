@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
 
 MONITOR_CMD="gnome-monitor-config set -L -M eDP-1 -m 1600x2560@143.999 -s 2 -x 0 -y 0 -p"
 
