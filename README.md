@@ -10,9 +10,19 @@ sudo dnf install iio-sensor-proxy gnome-monitor-config
 
 ## Installation
 
+## Installation
+
+**With git:**
 ```bash
 git clone https://github.com/WhateverMars/gpd-pocket-4-fedora.git
 cd gpd-pocket-4-fedora
+bash install.sh
+```
+
+**Without git:**
+
+Download the latest release zip, extract it, open a terminal in the folder and run:
+```bash
 bash install.sh
 ```
 
