@@ -4,7 +4,7 @@ set -e
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 USERNAME="$(whoami)"
-SCRIPT_DEST="$HOME/.local/bin/auto-rotate-screen.sh"
+SCRIPT_DEST="$HOME/.local/bin"
 USER_SYSTEMD="$HOME/.config/systemd/user"
 SYSTEM_SYSTEMD="/etc/systemd/system"
 
@@ -49,8 +49,11 @@ install_orientation_fix() {
 install_auto_rotate() {
     echo "Installing auto-rotate screen..."
 
-    cp "$REPO_DIR/scripts/auto-rotate-screen.sh" "$SCRIPT_DEST"
-    chmod +x "$SCRIPT_DEST"
+    mkdir -p "$SCRIPT_DEST/lib"
+    cp "$REPO_DIR/scripts/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen-ongoing.sh"
+    cp "$REPO_DIR/scripts/rotate-screen.sh" "$SCRIPT_DEST/rotate-screen.sh"
+    cp "$REPO_DIR/scripts/lib/orientation.sh" "$SCRIPT_DEST/lib/orientation.sh"
+    chmod +x "$SCRIPT_DEST/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen.sh"
 
     cp "$REPO_DIR/systemd/auto-rotate-screen.service" "$USER_SYSTEMD/auto-rotate-screen.service"
 
