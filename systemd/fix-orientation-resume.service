@@ -7,7 +7,7 @@ Type=oneshot
 User=INSTALL_USER
 Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/%U/bus
 ExecStartPre=/bin/sleep 1
-ExecStart=/usr/bin/gnome-monitor-config set -L -M eDP-1 -m 1600x2560@143.999 -s 2 -t right -x 0 -y 0 -p
+ExecStart=/bin/bash %h/.local/bin/rotate-screen.sh
 
 [Install]
 WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target

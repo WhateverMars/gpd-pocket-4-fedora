@@ -10,8 +10,6 @@ sudo dnf install iio-sensor-proxy gnome-monitor-config
 
 ## Installation
 
-## Installation
-
 **With git:**
 ```bash
 git clone https://github.com/WhateverMars/gpd-pocket-4-fedora.git
@@ -35,9 +33,8 @@ The script uses `sudo` only for:
 ## Components
 
 ### Orientation Fix on Resume
-Forces the display back to landscape after waking from suspend/hibernate
-via `gnome-monitor-config`. Runs as a system-level oneshot service
-triggered by sleep targets.
+Updates the screen rotation to match orientation after waking from suspend/hibernate via `gnome-monitor-config`.
+Runs as a system-level oneshot service triggered by sleep targets.
 
 ### Auto Rotate Screen
 The panel is physically portrait (1600x2560 native) but used in landscape,

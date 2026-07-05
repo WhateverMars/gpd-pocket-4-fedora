@@ -4,7 +4,7 @@ After=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=%h/.local/bin/auto-rotate-screen.sh
+ExecStart=%h/.local/bin/rotate-screen-ongoing.sh
 Restart=always
 RestartSec=3
 
