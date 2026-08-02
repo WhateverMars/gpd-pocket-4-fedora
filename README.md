@@ -37,9 +37,9 @@ Updates the screen rotation to match orientation after waking from suspend/hiber
 Runs as a system-level oneshot service triggered by sleep targets.
 
 ### Auto Rotate Screen
-The panel is physically portrait (1600x2560 native) but used in landscape,
+The panel is physically portrait (1600x2560 native) as it's a tablet screen,
 which means the accelerometer orientation labels are offset 90° from what
-you'd expect — `right-up` is the normal working position, not `normal`.
+you'd expect, `right-up` is the normal working position, not `normal`.
 
 Uses `monitor-sensor` (via `iio-sensor-proxy`) to watch for orientation
 changes and calls `gnome-monitor-config` to apply the correct transform.

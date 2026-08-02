@@ -13,58 +13,58 @@ mkdir -p "$HOME/.local/bin"
 mkdir -p "$USER_SYSTEMD"
 
 check_dependencies() {
-    echo "Checking dependencies..."
-    local missing=0
+  echo "Checking dependencies..."
+  local missing=0
 
-    if ! command -v monitor-sensor &> /dev/null; then
-        echo "  MISSING: monitor-sensor (sudo dnf install iio-sensor-proxy)"
-        missing=1
-    fi
+  if ! command -v monitor-sensor &>/dev/null; then
+    echo "  MISSING: monitor-sensor (sudo dnf install iio-sensor-proxy)"
+    missing=1
+  fi
 
-    if ! command -v gnome-monitor-config &> /dev/null; then
-        echo "  MISSING: gnome-monitor-config (sudo dnf install gnome-monitor-config)"
-        missing=1
-    fi
+  if ! command -v gnome-monitor-config &>/dev/null; then
+    echo "  MISSING: gnome-monitor-config (sudo dnf install gnome-monitor-config)"
+    missing=1
+  fi
 
-    if [ $missing -eq 1 ]; then
-        echo "Please install missing dependencies and re-run."
-        exit 1
-    fi
+  if [ $missing -eq 1 ]; then
+    echo "Please install missing dependencies and re-run."
+    exit 1
+  fi
 
-    echo "All dependencies found."
+  echo "All dependencies found."
 }
 
 install_orientation_fix() {
-    echo "Installing orientation fix on resume..."
+  echo "Installing orientation fix on resume..."
 
-    sed "s|INSTALL_USER|$USERNAME|g" \
-        "$REPO_DIR/systemd/fix-orientation-resume.service" \
-        | sudo tee "$SYSTEM_SYSTEMD/fix-orientation-resume.service" > /dev/null
+  sed "s|INSTALL_USER|$USERNAME|g" \
+    "$REPO_DIR/systemd/fix-orientation-resume.service" |
+    sudo tee "$SYSTEM_SYSTEMD/fix-orientation-resume.service" >/dev/null
 
-    sudo systemctl daemon-reload
-    sudo systemctl enable fix-orientation-resume.service
-    echo "Orientation fix installed and enabled."
+  sudo systemctl daemon-reload
+  sudo systemctl enable fix-orientation-resume.service
+  echo "Orientation fix installed and enabled."
 }
 
 install_auto_rotate() {
-    echo "Installing auto-rotate screen..."
+  echo "Installing auto-rotate screen..."
 
-    mkdir -p "$SCRIPT_DEST/lib"
-    cp "$REPO_DIR/scripts/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen-ongoing.sh"
-    cp "$REPO_DIR/scripts/rotate-screen.sh" "$SCRIPT_DEST/rotate-screen.sh"
-    cp "$REPO_DIR/scripts/lib/orientation.sh" "$SCRIPT_DEST/lib/orientation.sh"
-    chmod +x "$SCRIPT_DEST/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen.sh"
+  mkdir -p "$SCRIPT_DEST/lib"
+  cp "$REPO_DIR/scripts/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen-ongoing.sh"
+  cp "$REPO_DIR/scripts/rotate-screen.sh" "$SCRIPT_DEST/rotate-screen.sh"
+  cp "$REPO_DIR/scripts/lib/orientation.sh" "$SCRIPT_DEST/lib/orientation.sh"
+  chmod +x "$SCRIPT_DEST/rotate-screen-ongoing.sh" "$SCRIPT_DEST/rotate-screen.sh"
 
-    cp "$REPO_DIR/systemd/auto-rotate-screen.service" "$USER_SYSTEMD/auto-rotate-screen.service"
+  cp "$REPO_DIR/systemd/auto-rotate-screen.service" "$USER_SYSTEMD/auto-rotate-screen.service"
 
-    systemctl --user daemon-reload
-    systemctl --user enable --now auto-rotate-screen.service
-    echo "Auto-rotate installed and running."
+  systemctl --user daemon-reload
+  systemctl --user enable --now auto-rotate-screen.service
+  echo "Auto-rotate installed and running."
 }
 
 install_all() {
-    install_orientation_fix
-    install_auto_rotate
+  install_orientation_fix
+  install_auto_rotate
 }
 
 check_dependencies
@@ -77,10 +77,10 @@ echo "  3) Everything"
 read -rp "Choice [1/2/3]: " choice
 
 case $choice in
-    1) install_orientation_fix ;;
-    2) install_auto_rotate ;;
-    3) install_all ;;
-    *) echo "Invalid choice, exiting." && exit 1 ;;
+1) install_orientation_fix ;;
+2) install_auto_rotate ;;
+3) install_all ;;
+*) echo "Invalid choice, exiting." && exit 1 ;;
 esac
 
 echo "Done!"
